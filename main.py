@@ -1,8 +1,11 @@
 from utils import clear_screen
 from customers import function_menu_customer
 
-
+VERSION = "1.1.0"
 while True:
+    print("=" * 40)
+    print(f"SISTEMA DE VERSÂO DE CLIENTES - v{VERSION}")
+    print("=" * 40)
     try:
         verificador = input("1- Clientes \n2- Agenda \n3- Financeiro \n4- Sair \nEscolha sua opção: ")
         verificador = int(verificador)
