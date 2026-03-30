@@ -18,7 +18,7 @@ def create_schedule():
             if verify == 1:
                 for customer in customers_list:
                     print("=" * 30)
-                    print(f"ID: {display_text(customer['id'])}")
+                    print(f"ID: {(customer['id'])}")
                     print(f"Nome: {display_text(customer['name'])}")
                     for addrss in customer['addresses']:
                         print(f"Address: {display_text(addrss['street'])}")
