@@ -2,7 +2,7 @@
 from utils import clear_screen, display_text, normalized_text
 
 customers_list = []
-
+excluded_customer = []
 next_id = 1
 # ---------------------------------------------------
 #       FUNTION ADD CUSTOMER
@@ -168,8 +168,26 @@ def update_customers():
 # -----------------------------------------------------------------------
 #       FUNTION DELETE_CUSTOMERS
 def delete_customers():
-    ...
-            
+    for c in customers_list:
+        print(f"ID: {c['id']}")
+        print(f"{c['name']}")
+        print("=" * 30)
+    try:
+        verify = int(input("Digite o ID do cliente a ser excluido: "))
+    except ValueError:
+        print("Digite um número válido.")
+        return
+    for c in customers_list:
+        if c['id'] == verify:
+            customers_list.remove(c)
+            print(f"Cliente {c['name']} removido com sucesso!")
+            excluded_customer.append(c)
+            print(f"o cliente {c['name']} foi adicionado numa lista, para que caso ele volte a necessitar de nossos serviços.")            
+            return
+    print("ID")
+
+    
+
 
 # -----------------------------------------------------------------------
 #       FUNCTION MENU TO ACCESS ALL OF THE OTHERS FUNCTIONS ABOUT CUSTOMER

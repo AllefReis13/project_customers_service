@@ -1,7 +1,8 @@
 from utils import clear_screen
 from customers import function_menu_customer
+from schedule import menu_schedule
 
-VERSION = "1.1.0"
+VERSION = "1.2.0"
 while True:
     print("=" * 40)
     print(f"SISTEMA DE VERSÂO DE CLIENTES - v{VERSION}")
@@ -14,7 +15,8 @@ while True:
             function_menu_customer()
             
         elif verificador == 2:
-            ...
+            clear_screen()
+            menu_schedule()
         elif verificador == 3:
             ...
         elif verificador == 4:
