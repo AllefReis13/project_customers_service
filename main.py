@@ -1,8 +1,9 @@
-from utils import clear_screen
+from utils import clear_screen, load_data, save_data
 from customers import function_menu_customer
 from schedule import menu_schedule
 
 VERSION = "1.2.0"
+customers_list = load_data()
 while True:
     print("=" * 40)
     print(f"SISTEMA DE VERSÂO DE CLIENTES - v{VERSION}")

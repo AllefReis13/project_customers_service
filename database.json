@@ -1,0 +1,41 @@
+[
+    {
+        "id": 1,
+        "name": "allef",
+        "phone": "936906797",
+        "addresses": [
+            {
+                "street": "moinho de fanares 1 1° frnt",
+                "street_2": "prx farmacia quimia",
+                "city": "sintra",
+                "state": "lisboa",
+                "zip_code": "2725-394",
+                "country": "portugal"
+            }
+        ],
+        "schedule": [
+            {
+                "customer_id": 1,
+                "appointment_id": 1,
+                "name": "allef",
+                "phone": "936906797",
+                "date": "26/03/2026",
+                "time": "14",
+                "description": "serviço de limpeza",
+                "price": 100.0,
+                "status": "pendente"
+            },
+            {
+                "customer_id": 1,
+                "appointment_id": 2,
+                "name": "allef",
+                "phone": "936906797",
+                "date": "02/04/2026",
+                "time": "14",
+                "description": "serviço de limpeza",
+                "price": 100.0,
+                "status": "pendente"
+            }
+        ]
+    }
+]

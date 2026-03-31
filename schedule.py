@@ -1,9 +1,10 @@
-from utils import clear_screen, normalized_text, display_text
+from utils import clear_screen, normalized_text, display_text, save_data, get_next_appointment_id
 from customers import customers_list
 
 
-appointment_id = 1
+appointment_id = get_next_appointment_id(customers_list)
 all_appointment = []
+
 
 # -------------------------------------------------------------------------------------------------------
 #           FUNCTION TO CREATE CUSTOMER'S SCHEDULE
@@ -83,8 +84,9 @@ def create_schedule():
                             
                             found = True
                             c['schedule'].append(schedule)
+                            save_data(customers_list)
                             all_appointment.append(schedule)
-                            appointment_id += 1
+                            appointment_id = get_next_appointment_id(customers_list)
                             print("Agendamento realizado...")
                             print(f"    ID do serviço: {schedule['appointment_id']}")
                             print(f"    Nome: {schedule['name']}")
@@ -93,6 +95,7 @@ def create_schedule():
                             print(f"    Descrição: {schedule['description']}")
                             print(f"    preço: €: {schedule['price']}")
                             print(f"    Status: {schedule['status']}")
+                            print("=" * 30)
 
                             clear_screen()
                             break                
@@ -114,7 +117,30 @@ def create_schedule():
         except Exception as e:
             print(f"ERROR --> {e}")   
 
+def all_schedule():
+    if not customers_list:
+        print("não há clientes na lista.")
+        return
+    for c in customers_list:
+        print(f"ID: {c['id']}")
+        print(f"Nome: {c['name']}")
+        print('=' * 30)
+        print(f"")
+        if not c['schedule']:
+            print("Sem agendamentos registrados.")
+        else:    
+            for add in c['schedule']:
+                print(f"=" * 30)
+                print(f"    ID do serviço: {add['appointment_id']}")
+                print(f"    Data: {add['date']}")
+                print(f"    Hora: {add['time']}")
+                print(f"    Descrição: {add['description']}")
+                print(f"    Preço: {add['price']}")
+                print(f"    Status: {add['status']}")
+                print("=" * 30)
 
+                
+    clear_screen(msg="Tecle ENTER para voltar ao menu anterior...")
 
 def menu_schedule():
     while True: 
@@ -125,7 +151,7 @@ def menu_schedule():
             if verify == 1:
                 create_schedule()
             elif verify == 2:
-                ...
+                all_schedule()
             elif verify == 3:
                 ...
             elif verify == 4:

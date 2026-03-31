@@ -1,9 +1,13 @@
 
-from utils import clear_screen, display_text, normalized_text
+from utils import clear_screen, display_text, normalized_text, save_data, load_data
 
-customers_list = []
+customers_list = load_data()
 excluded_customer = []
-next_id = 1
+
+if customers_list:
+    next_id = max(c['id'] for c in customers_list) + 1
+else:
+    next_id = 1
 # ---------------------------------------------------
 #       FUNTION ADD CUSTOMER
 
@@ -36,9 +40,11 @@ def add_customers():
     }
     customer['addresses'].append(address)
     customers_list.append(customer)
+    save_data(customers_list)
     print(f'{name} foi adicionado com sucesso.')
     clear_screen(msg="Tecle ENTER para continuar")
     next_id += 1
+    
 
 
 
@@ -58,13 +64,14 @@ def all_customers():
         print(f"Phone: {c['phone']}")
         print()
         for addrss in c['addresses']:
+            print("     =" * 30)
             print(f"    Rua: {display_text(addrss['street'])}")
             print(f"    complemento: {display_text(addrss['street_2'])}")
             print(f"    Cidade: {display_text(addrss['city'])}")
             print(f"    Estado: {display_text(addrss['state'])}")
             print(f"    Código postal: {addrss['zip_code']}")
             print(f"    País: {display_text(addrss['country'])}")
-            print('-' * 30)
+            print("      =" * 30)
     clear_screen(msg="Tecle ENTER para continuar...")
 
 #  ----------------------------------------------------------------------
@@ -124,6 +131,7 @@ def update_customers():
                     new_name = input("New name: ")
                     cliente_alvo['name'] = normalized_text(new_name)
                     print(f"Done, name updated.")
+                    
                 
                 elif verify == 2:
                     new_phone = input("New phone number: ")
@@ -162,7 +170,8 @@ def update_customers():
             print("ERROR --> Por favor, digite um número válido.")
         except Exception as e:
             print(f"ERROR --> {e}")
-
+        
+    save_data(customers_list)
     
 
 # -----------------------------------------------------------------------
@@ -182,9 +191,13 @@ def delete_customers():
             customers_list.remove(c)
             print(f"Cliente {c['name']} removido com sucesso!")
             excluded_customer.append(c)
+            save_data(customers_list)
             print(f"o cliente {c['name']} foi adicionado numa lista, para que caso ele volte a necessitar de nossos serviços.")            
             return
-    print("ID")
+        
+    print("ID não encontrado.")
+
+    
 
     
 
